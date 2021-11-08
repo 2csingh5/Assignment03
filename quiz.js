@@ -39,7 +39,7 @@ async function startButtonEvent(e) {
             firstName = document.querySelector("#firstName").value;
             lastName = document.querySelector("#lastName").value;
 
-            let api_url = "https://my-json-server.typicode.com/charnjotb25/"
+            let api_url = "https://my-json-server.typicode.com/2csingh5/"
             let api_url_endpoint = ""
             if (document.querySelector("#quiz1").checked == true) {
                 api_url_endpoint = "Assignment03/quiz_one";
