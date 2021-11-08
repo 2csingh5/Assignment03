@@ -105,37 +105,16 @@ async function startButtonEvent(e) {
             check_user_response(user_response,appState.current_model)
         }
     }
-/*
-    if (appState.current_view == "#fill_blank_view") {
-        if (e.target.type == "text") {
-            submit_button = document.querySelector('button[data-action="submit"]');
-            if (submit_button.disabled == true) {
-                submit_button.disabled = false;
-            }
-        }
+
+   if (appState.current_view == "#complete_the_sentence_view") {
+      
         if (e.target.dataset.action == "submit") {
 
-            user_response = document.querySelector('input[type="text"]').value;
-
+            user_response = document.querySelector('input[name="answer"]').value;
             check_user_response(user_response,appState.current_model)
         }
     }
 
-    if (appState.current_view == "#fix_error_view") {
-        if (e.target.type == "text") {
-            submit_button = document.querySelector('button[data-action="submit"]');
-            if (submit_button.disabled == true) {
-                submit_button.disabled = false;
-            }
-        }
-        if (e.target.dataset.action == "submit") {
-
-            user_response = document.querySelector('input[type="text"]').value;
-
-            check_user_response(user_response,appState.current_model)
-        }
-    }
-*/
     if (appState.current_view == "#feedback_view") {
         if (e.target.dataset.action == "gotIt") {
             updateQuestion(appState);
@@ -230,6 +209,9 @@ function quiz_app_view(appState) {
 
     else if (appState.current_model.questionType == "text_input") {
         appState.current_view = "#text_input_view";
+    }
+     else if (appState.current_model.questionType == "complete_the_sentence") {
+        appState.current_view = "#complete_the_sentence_view";
     }
     /*
     else if (appState.current_model.questionType == "fill_blank") {
