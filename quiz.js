@@ -250,7 +250,7 @@ function update_view(appState) {
         var percentage = appState.correctAnswers / appState.questionsAnswered;
             percentage = Math.round(percentage * 100);
 
-        if (percentage >= 65) {
+        if (percentage > 80) {
             document.querySelector("#completion_text").innerHTML = `
                                                                     Your Score: ${percentage}% <br>
                                                                     Congratulations ${userName}, you passed the quiz!!!
