@@ -11,7 +11,7 @@ const appState = {
 
 let firstName = "";
 let lastName = "";
-
+//let userName = firstName + " " + lastName;
 var time_elapsed = 0;
 var timer;
 
@@ -30,12 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
 async function startButtonEvent(e) {
     if (appState.current_view == "#intro_view") {
         if (e.target.dataset.action == "start") {
-            
             appState.current_question = 0;
+
             firstName = document.querySelector("#firstName").value;
             lastName = document.querySelector("#lastName").value;
 
@@ -47,9 +46,9 @@ async function startButtonEvent(e) {
             else if(document.querySelector("#quiz2").checked == true){
                 api_url_endpoint = "Quiz2_questions/quiz_two";
             }
+            
             let api = api_url+api_url_endpoint;
             appState.current_quiz = api;
-
             appState.current_model = await getModel(api,appState);
             quiz_app_view(appState);
             update_view(appState);
@@ -60,14 +59,15 @@ async function startButtonEvent(e) {
                 time_elapsed++;
                 document.querySelector("#time_elapsed").querySelector("span").innerHTML = `${time_elapsed}`;
             },1000);
-            update_counters(appState);
+            update_counter(appState);
         }
     }
 
     if (appState.current_view == "#true_false_view") {
         if (e.target.dataset.action == "answer") {
-          
+            
             user_response = e.target.dataset.answer;
+        
         }
         if (e.target.dataset.action == "submit") {
 
@@ -77,7 +77,6 @@ async function startButtonEvent(e) {
 
     if (appState.current_view == "#multiple_choice_view") {
         if (e.target.type == "radio") {
-          
             user_response = e.target.value;
         }
         if (e.target.dataset.action == "submit") {
@@ -88,7 +87,6 @@ async function startButtonEvent(e) {
 
     if (appState.current_view == "#yes_no_view") {
         if (e.target.type == "radio") {
-          
             user_response = e.target.value;
         }
         if (e.target.dataset.action == "submit") {
@@ -97,20 +95,20 @@ async function startButtonEvent(e) {
         }
     }
 
-    if (appState.current_view == "#text_input_view") {
-      
+    if (appState.current_view == "#complete_the_sentence_view") {
         if (e.target.dataset.action == "submit") {
 
             user_response = document.querySelector('input[name="answer"]').value;
+
             check_user_response(user_response,appState.current_model)
         }
     }
 
-   if (appState.current_view == "#complete_the_sentence_view") {
-      
+    if (appState.current_view == "#text_input_view") {
         if (e.target.dataset.action == "submit") {
 
             user_response = document.querySelector('input[name="answer"]').value;
+
             check_user_response(user_response,appState.current_model)
         }
     }
@@ -130,7 +128,7 @@ async function startButtonEvent(e) {
             appState.current_model = await getModel(appState.current_quiz,appState);
             quiz_app_view(appState);
             update_view(appState);
-            update_counters(appState);
+            update_counter(appState);
 
             document.querySelector("#time_elapsed").querySelector("span").innerHTML = time_elapsed = 0;
             timer = setInterval(async()=>{
@@ -172,7 +170,7 @@ function check_user_response(user_answer, model) {
                                                             `;
     }
     appState.questionsAnswered++;
-    update_counters(appState);
+    update_counter(appState);
 }
 
 async function updateQuestion(appState) {
@@ -206,22 +204,15 @@ function quiz_app_view(appState) {
     else if (appState.current_model.questionType == "yes_no") {
         appState.current_view = "#yes_no_view";
     }
+    else if (appState.current_model.questionType == "complete_the_sentence") {
+        appState.current_view = "#complete_the_sentence_view";
+    }
 
     else if (appState.current_model.questionType == "text_input") {
         appState.current_view = "#text_input_view";
     }
-     else if (appState.current_model.questionType == "complete_the_sentence") {
-        appState.current_view = "#complete_the_sentence_view";
-    }
-    /*
-    else if (appState.current_model.questionType == "fill_blank") {
-        appState.current_view = "#fill_blank_view";
-    }
-    else if (appState.current_model.questionType == "fix_error") {
-        appState.current_view = "#fix_error_view";
-    }
-    */
 }
+
 
 function update_view(appState) {
     const html_element = render_widget(appState.current_model, appState.current_view)
@@ -231,7 +222,7 @@ function update_view(appState) {
         let userName = firstName + " " + lastName;
         var percentage = appState.correctAnswers / appState.questionsAnswered;
             percentage = Math.round(percentage * 100);
-
+     
         if (percentage > 80) {
             document.querySelector("#completion_text").innerHTML = `
                                                                     Your Score: ${percentage}% <br>
@@ -258,10 +249,10 @@ function start_timer() {
     document.querySelector("#time_elapsed").querySelector("p").innerHTML = "Time Elapsed:";
 }
 
-function update_counters(appState) {
+function update_counter(appState) {
     document.querySelector("#questions_answered").querySelector("span").innerHTML = `Questions Answered:<br>${appState.questionsAnswered}`;
     var percentage = appState.correctAnswers / appState.questionsAnswered;
         percentage = Math.round(percentage * 100);
-  
+    
     document.querySelector("#score").querySelector("span").innerHTML = `Score:<br>${percentage}%`;
 }
