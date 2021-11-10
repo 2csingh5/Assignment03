@@ -47,10 +47,10 @@
         {
             "id":6,
         "questionType": "complete_the_sentence",
-        "questionText": "HTML stands for _________________________",
+        "questionText": "In HTML, the tag _________ is used to insert a horizontal line.",
         "answerFieldId": "answer_to_question",
-        "correctAnswer": "Hyper Text Markup Language",
-        "feedback": "HTML stands for Hyper Text Markup Language"
+        "correctAnswer": "<hr>",
+        "feedback": "The <hr> tag is used to insert a horizontal line in HTML."
         },
         {
            "id":7,
