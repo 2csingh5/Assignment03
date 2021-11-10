@@ -42,10 +42,10 @@ async function startButtonEvent(e) {
             let api_url = "https://my-json-server.typicode.com/2csingh5/"
             let api_url_endpoint = ""
             if (document.querySelector("#quiz1").checked == true) {
-                api_url_endpoint = "Assignment03/quiz_one";
+                api_url_endpoint = "Quiz1_questions/quiz_one";
             }
             else if(document.querySelector("#quiz2").checked == true){
-                api_url_endpoint = "Assignment03/quiz_one";
+                api_url_endpoint = "Quiz2_questions/quiz_two";
             }
             let api = api_url+api_url_endpoint;
             appState.current_quiz = api;
