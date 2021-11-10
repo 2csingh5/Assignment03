@@ -150,6 +150,10 @@ async function getModel(url,appState) {
     return model;
 }
 
+function start_timer() {
+    document.querySelector("#time_elapsed").querySelector("p").innerHTML = "Time Elapsed:";
+}
+
 function check_user_response(user_answer, model) {
 
     if (user_answer == model.correctAnswer) {
@@ -238,21 +242,18 @@ function update_view(appState) {
     }
 }
 
-const render_widget = (model,view) => {
-    template_source = document.querySelector(view).innerHTML;
-    var template = Handlebars.compile(template_source);
-    var html_widget_element = template(model);
-    return html_widget_element;
-}
-
-function start_timer() {
-    document.querySelector("#time_elapsed").querySelector("p").innerHTML = "Time Elapsed:";
-}
-
 function update_counter(appState) {
     document.querySelector("#questions_answered").querySelector("span").innerHTML = `Questions Answered:<br>${appState.questionsAnswered}`;
     var percentage = appState.correctAnswers / appState.questionsAnswered;
         percentage = Math.round(percentage * 100);
     
     document.querySelector("#score").querySelector("span").innerHTML = `Score:<br>${percentage}%`;
+}
+
+
+const render_widget = (model,view) => {
+    template_source = document.querySelector(view).innerHTML;
+    var template = Handlebars.compile(template_source);
+    var html_widget_element = template(model);
+    return html_widget_element;
 }
