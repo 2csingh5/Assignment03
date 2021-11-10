@@ -20,24 +20,27 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <div class="container">
-    <a class="navbar-brand" href="#">Quiz Application</a>
+    <h4>Quiz Application</h4>
     </div>
     </nav>
+    <br>
 
     <div>
       <div id="quiz_div"></div><hr>
         <div id="scoreboard" >
           <div>
-            <div id="questions_answered"><span></span></div><br>
-            
-            <div id="score" ><span></span></div><br>
-            
+            <div id="questions_answered"><span></span></div>
+
+             <hr>
+            <div id="score" ><span></span></div>
+
+            <hr>
           </div>
 
           <div>
             <div id="time_elapsed">
               <p></p>
-              
+
               <span></span>
             </div>
           </div>
@@ -61,12 +64,12 @@
 
       <div class="pickQuiz">
 
-                      <label> Which Qtime_elapsedo take? </label>
+                      <label> Which Quiz do you want to take? </label>
                       <div id="radio-form">
                         <input type="radio" name="pickQuiz" value="quiz1" id="quiz1">
-                        <label for="quiz1">Quiz 1</label> <br>
+                        <label for="quiz1">Quiz 1 - HTML and CSS</label> <br>
                         <input type="radio" name="pickQuiz" value="quiz2" id="quiz2">
-                         <label for="quiz2">Quiz 2</label>
+                         <label for="quiz2">Quiz 2 - Java</label>
                       </div>
       </div>
 
@@ -97,7 +100,7 @@
             <input type="radio" name="select" value="{{this.options.[0]}}"><span>{{this.options.[0]}}</span><br>
             <input type="radio" name="select" value="{{this.options.[1]}}"><span>{{this.options.[1]}}</span><br>
             <input type="radio" name="select" value="{{this.options.[2]}}"><span>{{this.options.[2]}}</span><br>
-            <input type="radio" name="select" value="{{this.options.[3]}}"><span>{{this.options.[3]}}</span>
+            <input type="radio" name="select" value="{{this.options.[3]}}"><span>{{this.options.[3]}}</span><br><br>
         </div>
         <button data-action="submit">Submit</button>
     </script>
@@ -116,25 +119,23 @@
     </script>
 
     <!--  -->
+    <script id="complete_the_sentence_view" type="text/x-handlebars-template">
+        <span class="center">{{this.questionText}}</span>
+        <hr>
+        <br>
+        <input type="text" name="answer" id="complete_the_sentence_box" autocomplete="off"><br><br>
+        <button data-action="submit">Submit</button>
+    </script>
+
+    <!--  -->
 
     <script id="text_input_view" type="text/x-handlebars-template">
         <span class="center">{{this.questionText}}</span>
         <hr>
         <br>
-        <input type="text" name="answer" id="text_input_box" autocomplete="off"><br>
+        <input type="text" name="answer" id="text_input_box" autocomplete="off"><br><br>
         <button data-action="submit">Submit</button>
     </script>
-  
-  <script id="complete_the_sentence_view" type="text/x-handlebars-template">
-        <span class="center">{{this.questionText}}</span>
-        <hr>
-        <br>
-        <input type="text" name="answer" id="text_input_box" autocomplete="off"><br>
-        <button data-action="submit">Submit</button>
-    </script>
-  
-  
-  
 
     <script id="feedback_view" type="text/x-handlebars-template">
       <h3> Your answer is <span style=color:red;>Incorrect</span> </h3><br>
